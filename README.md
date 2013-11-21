@@ -15,6 +15,8 @@ If this is the first time, or the cameras have been in storage for a few days or
 
 If you're on the Official laptop, there's a script in the ~/bin/ folder called cameraCalibrate or something which will start everything up for you.
 
+The node, stereo_image_proc, turns the stereo data into depth data.
+
 You need to get the stereo_image_proc parameters working nicely. These should stay the same since Kit last set them and they should be fine. But if you are getting crappy results for the disparity map (command for showing it is below), then follow this tutorial here (wiki.ros.org/stereo_image_proc/Tutorials/ChoosingGoodStereoParameters). You can probably skip to Step 3 and use this command to start the node instead:
 ```
 rosrun stereo_image_proc stereo_image_proc
@@ -23,7 +25,11 @@ also run this to show the disparity result:
 ```
 rosrun image_view stereo_view stereo:=/ image:=image_rect_color
 ```
-and then run the following to show the GUI for tweaking (read the tuturial for what they all mean). I found the more important ones were: uniqueness_ratio, min_disparity, disparity_range, speckle_range.
+and then run the following to show the GUI for tweaking:
+```
+rosrun dynamic_reconfigure reconfigure_gui 
+```
+Read the tuturial for what they all mean. I found the more important ones were: uniqueness_ratio, min_disparity, disparity_range, speckle_range.
 
 ### Getting the depth data
 The stereo_image_proc node is used to convert the calibrated stereo cameras into a depth map. This node is started by:
