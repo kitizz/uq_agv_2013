@@ -42,5 +42,7 @@ Once that's all running, we're ready to plug some code into it.
 # Running some code
 The best one to look at will be liveObstacleDetection.py. It shows how to subscribe to the ROS topics for the point cloud and image data. And it also shows how the ObstacleDetector class can be used.
 
-```./liveObstacleDetection.py```
+```
+./liveObstacleDetection.py
+```
 
