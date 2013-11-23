@@ -41,19 +41,19 @@ class ObstacleDetector:
 	def getPlaneObjectMask(self):
 		'''
 		The plane is a numpy array the same size as the camera image. The
-    	elements in the mask are set to 1 if that pixel is part of the
-    	plane/ground, 2 if that pixel is an object, and 0 otherwise.
-    	'''
+		elements in the mask are set to 1 if that pixel is part of the
+		plane/ground, 2 if that pixel is an object, and 0 otherwise.
+		'''
 		return self.planeObjectMask
 
 	def getObstacleCloud(self):
 		'''
 		ObstacleCloud is a list of 2D points relative to the camera.
-    	The positive X-axis goes to the right of the camera.
-    	The positive Y-axis goes away from the camera.
-    	TODO: Double check this =S
-    	'''
-    	return self.obstacleCloud
+		The positive X-axis goes to the right of the camera.
+		The positive Y-axis goes away from the camera.
+		TODO: Double check this =S
+		'''
+		return self.obstacleCloud
 
 	def updateImage(self, image_msg):
 		if type(image_msg) == np.ndarray:
@@ -78,8 +78,9 @@ class ObstacleDetector:
 	def update(self):
 		# This is where the magic happens
 		self.depth = np.nan_to_num(self.points[...,...,2])
+		print 'Points', self.points.shape
 		# self.depth /= 10.
-		# cv2.imshow('Depth', depth)
+		# cv2.imshow('Depth', self.depth/10.)
 
 		model = SACModelPlane.SACModelPlane(self.points)
 
@@ -121,8 +122,8 @@ class ObstacleDetector:
 
 		# Clear and remark the mask
 		self.planeObjectMask[...,...] = 0
-		self.planeObjectMask[inlierInd] = 1
-		self.planeObjectMask[objectInd] = 2
+		self.planeObjectMask[model.ind2coord(inlierInd)] = 1
+		self.planeObjectMask[model.ind2coord(objectInd)] = 2
 		
 		# self.showObstacles(objectInd, inlierInd)
 
@@ -144,7 +145,7 @@ class ObstacleDetector:
 		original image.
 		'''
 		drawPlane = planeIndices != None and len(planeIndices) > 0
-		drawObstacles = obstacleIndices == None || len(obstacleIndices) == 0
+		drawObstacles = obstacleIndices == None or len(obstacleIndices) == 0
 		if not drawPlane and not drawObstacles: return
 
 		# Convert the image to colour so we can draw on it
