@@ -1,5 +1,8 @@
 # From http://stackoverflow.com/a/14058267
 
+# Python
+*.pyc
+
 # C extensions
 *.so
 

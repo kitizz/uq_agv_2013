@@ -30,28 +30,22 @@ class LaneDetector:
 		#Canny image
 		self.contours = cv2.Canny(image,50,100)
 
-		print 'Deets:'
-		print self.image.shape
-		print image.shape
-		print type(self.contours), self.contours
-		cv2.imshow('Debug', self.contours)
-		cv2.waitKey(0)
 		#PROBABALISTIC HOUGH TRANSFORM-----------
 		self.houghPImg[...,...] = 0
-		# houghP = cv2.HoughLinesP(self.contours,2, 5.*math.pi/180, 1, 0,0 )
+		houghP = cv2.HoughLinesP(self.contours,2, 5.*math.pi/180, 2 )
 
-		# for i in range(0,len(houghP[0])):
-		# 	cv2.line(self.houghPImg,(houghP[0][i][0], houghP[0][i][1]),(houghP[0][i][2],houghP[0][i][3]),255,2)
+		for i in range(0,len(houghP[0])):
+			cv2.line(self.houghPImg,(houghP[0][i][0], houghP[0][i][1]),(houghP[0][i][2],houghP[0][i][3]),255,2)
 		
 		#HOUGH TRANSFORM-----------
 		self.houghImg[...,...] = 0
-		hough = cv2.HoughLines(self.contours,2, 5.*math.pi/180, 60,0,0)
+		hough = cv2.HoughLines(self.contours,2, 5.*math.pi/180, 60)
 
 		nLines = 0
 		for i in range(0,len(hough[0])):
 			rho= hough[0][i][0]
 			theta= hough[0][i][1]
-			if theta<math.pi/4 or theta > 3.*math.pi/4:
+			if theta < math.pi/4 or theta > 3.*math.pi/4:
 				if nLines > 10: break
 				nLines += 1
 				#point of intersection of the line with first row
@@ -72,7 +66,7 @@ class LaneDetector:
 		cv2.imshow("Hough", self.houghImg)
 		cv2.imshow("HoughP", self.houghPImg)
 		cv2.imshow("Masked", self.detectedLines.astype(float)*255)
-		cv2.waitKey(0)
+		#cv2.waitKey(0)
 
 
 if __name__ == "__main__":
