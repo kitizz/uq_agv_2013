@@ -103,15 +103,16 @@ class ObstacleDetector:
         success, self.coeff, inlierInd, select = ran.computeModel(startCoeff, constraint=constraintFunc)
         if not success: return # Let's not waste our time
 
-        success, self.coeff = model.optimiseModelCoefficients(inlierInd, self.coeff)
-        success, inliearInd = model.selectWithinDistance(self.coeff, 0.15)
+        # Fine tune
+        # success, self.coeff = model.optimiseModelCoefficients(inlierInd, self.coeff)
+        # success, inliearInd = model.selectWithinDistance(self.coeff, 0.15)
+
         N = float(len(inlierInd))
         self.coeffRating = N/len(model.indices)
 
         # Ensure that the plane is always facing "up" (Y-axis negative)
         if np.sign(self.coeff[1]) > 0:
             self.coeff *= -1
-
 
         # From points not defined as the plane, we define object points as
         # points that are above the ground plane (negative side)

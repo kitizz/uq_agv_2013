@@ -7,6 +7,7 @@ This scripts runs the obstacle detector on a live feed from ROS.
 import numpy as np
 from ObstacleDetector import *
 from LaneDetector import *
+from GrassDetector import *
 
 import sys, time
 
@@ -31,7 +32,7 @@ def points2cloud_to_array(cloud_msg):
 
 class Ros2Python:
 
-    def __init__(self, objectDetector=None, laneDetector=None):
+    def __init__(self, objectDetector=None, laneDetector=None, grassDetector=None):
         # Subscribe to PointCloud2
         self.subImage = rospy.Subscriber("/left/image_rect_color",\
             Image, self.cbImage, queue_size=1)
@@ -42,6 +43,7 @@ class Ros2Python:
 
         self.objectDetector = objectDetector
         self.laneDetector = laneDetector
+        self.grassDetector = grassDetector
 
         if VERBOSE:
             print "Subscribed to /left/image_rect_color"
@@ -65,6 +67,8 @@ class Ros2Python:
             plane/ground, 2 if that pixel is an object, and 0 otherwise.
         '''
         mask = self.objectDetector.getPlaneObjectMask()
+        self.grassDetector.updateMask(mask)
+        grassMask = self.grassDetector.findGrass()
 
         ''' obsacleCloud: a list of 2D points relative to the camera.
             The positive X-axis goes to the right of the camera.
@@ -81,12 +85,9 @@ class Ros2Python:
         #self.objectDetector.showDepth()
         # Show the plane and abjects
         im = self.objectDetector.image.copy()
-        im[mask==1] = [255,0,0]
+        im[grassMask] = [255,0,0]
         im[mask==2] = [0,0,255]
         cv2.imshow('DetectedObjects', im)
-        cv2.imwrite('GrassTest.jpg', self.objectDetector.image)
-        cv2.imwrite('GrassTest_Plane.jpg', (mask==1).astype(float)*255)
-        cv2.waitKey(0)
 
         # Show the lines
         #self.laneDetector.showImage()
@@ -100,10 +101,14 @@ class Ros2Python:
         #self.images.append(image)
         self.objectDetector.updateImage(image)
         self.laneDetector.updateImage(image)
+        self.grassDetector.updateImage(image)
 
 def main():
     laneDetect = LaneDetector((240,320))
     obDetect = ObstacleDetector((240,320))
+    # Init with H,S,V thresholds
+    grassDetect = GrassDetector(45, 30, 35)
+
     # We assume that the normal of the plane is pointing straight up in the
     # vision (-Y direction)
     obDetect.setNormalConstraint( np.array([0.,-1.,0.]) )
@@ -111,7 +116,7 @@ def main():
     obDetect.angleConstraint = 30.
 
     # Set up the ROS node for pulling in the images
-    data = Ros2Python(obDetect,laneDetect)
+    data = Ros2Python(obDetect,laneDetect,grassDetect)
     rospy.init_node('Ros2Python', anonymous=True)
 
     try:
