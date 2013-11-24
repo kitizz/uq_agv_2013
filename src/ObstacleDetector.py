@@ -142,6 +142,12 @@ class ObstacleDetector:
     def showDepth(self):
         cv2.imshow('Depth', self.depth/10.)
 
+    def showDetected(self, mask):
+        im = self.image.copy()
+        im[mask==1] = [255,0,0]
+        im[mask==2] = [0,0,255]
+        cv2.imshow('DetectedObjects', im)
+
     def showObstacles(self, obstacleIndices, planeIndices=None):
         '''
         Show the plane and obstacles as horrible colours on overlaid on the

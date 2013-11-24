@@ -168,14 +168,22 @@ class Dlite():
         y = X.pt.y
         
         factor = 1
-        if x+1>=0 and x+1<self.x and y>=0 and y <self.y:
-            states.append(self.grid[X.pt.x+1][X.pt.y])
-        if x-1>=0 and x-1<self.x and y>=0 and y <self.y:
-            states.append(self.grid[X.pt.x-1][X.pt.y])
-        if x>=0 and x<self.x and y+1>=0 and y+1 <self.y:
-            states.append(self.grid[X.pt.x][X.pt.y+1])
-        if x>=0 and x<self.x and y-1>=0 and y-1 <self.y:
-            states.append(self.grid[X.pt.x][X.pt.y-1])
+        directions = [(1,0), (-1,0), (0,1), (0,-1),\
+                        (1,1), (-1,1), (1,-1), (-1,-1)]
+
+        for d in directions:
+            newX, newY = (x+d[0], y+d[1])
+            if newX >= 0 and newX < self.x and newY >= 0 and newY < self.y:
+                states.append(self.grid[newX][newY])
+
+        # if x+1>=0 and x+1<self.x and y>=0 and y <self.y:
+        #     states.append(self.grid[X.pt.x+1][X.pt.y])
+        # if x-1>=0 and x-1<self.x and y>=0 and y <self.y:
+        #     states.append(self.grid[X.pt.x-1][X.pt.y])
+        # if x>=0 and x<self.x and y+1>=0 and y+1 <self.y:
+        #     states.append(self.grid[X.pt.x][X.pt.y+1])
+        # if x>=0 and x<self.x and y-1>=0 and y-1 <self.y:
+        #     states.append(self.grid[X.pt.x][X.pt.y-1])
 
         #if x+factor>=0 and x+factor<self.x and y>=0 and y<self.y:
         #    states.append(self.grid[x+factor][y])

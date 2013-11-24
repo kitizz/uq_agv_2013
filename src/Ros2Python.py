@@ -45,9 +45,26 @@ class Ros2Python:
 
         self.bridge = CvBridge()
 
-        self.objectDetector = objectDetector
-        self.laneDetector = laneDetector
-        self.grassDetector = grassDetector
+        if objectDetector:
+            self.objectDetector = objectDetector
+        else:
+            obDetect = ObstacleDetector((240,320))
+            # We assume that the normal of the plane is pointing straight up
+            # in the vision (-Y direction)
+            obDetect.setNormalConstraint( np.array([0.,-1.,-0.2.]) )
+            # And allow the search to deviate only 30 degrees from that
+            obDetect.angleConstraint = 30.
+
+        if laneDetector:
+            self.laneDetector = laneDetector
+        else:
+            laneDetect = LaneDetector((240,320))
+
+        if grassDetector:
+            self.grassDetector = grassDetector
+        else:
+            # Init with H,S,V thresholds
+            grassDetect = GrassDetector(45, 25, 35)
 
         if VERBOSE:
             print "Subscribed to /left/image_rect_color"
@@ -64,8 +81,8 @@ class Ros2Python:
 
         pointT = point_msg.header.stamp.to_sec()
 
-        print 'Point Time:', pointT
-        print 'Image Times:', self.imageStamps
+        # print 'Point Time:', pointT
+        # print 'Image Times:', self.imageStamps
         image = None
         for i in range(len(self.imageStamps)):
             imageT = self.imageStamps[i]
@@ -92,35 +109,36 @@ class Ros2Python:
             elements in the mask are set to 1 if that pixel is part of the
             plane/ground, 2 if that pixel is an object, and 0 otherwise.
         '''
-        mask = self.objectDetector.getPlaneObjectMask()
+        self.mask = self.objectDetector.getPlaneObjectMask()
         self.grassDetector.updateMask(mask==1)
         grassMask = self.grassDetector.findGrass()
+        self.mask[grassMask] = 1
 
         ''' obsacleCloud: a list of 2D points relative to the camera.
             The positive X-axis goes to the right of the camera.
             The positive Y-axis goes away from the camera.
             TODO: Double check this =S
         '''
-        obstacleCloud = self.objectDetector.getObstacleCloud()
+        self.obstacleCloud = self.objectDetector.getObstacleCloud()
 
         # Do the lane detect also
         detectedLanes = self.laneDetector.findLines()
-        detectedLanes = np.logical_and(detectedLanes, mask==1)
+        self.detectedLanes = np.logical_and(detectedLanes, self.mask==1)
 
 
         #self.objectDetector.showDepth()
         # Show the plane and abjects
-        im = self.objectDetector.image.copy()
-        im[grassMask] = [255,0,0]
-        im[mask==2] = [0,0,255]
-        cv2.imshow('DetectedObjects', im)
+        # im = self.objectDetector.image.copy()
+        # im[grassMask] = [255,0,0]
+        # im[mask==2] = [0,0,255]
+        # cv2.imshow('DetectedObjects', im)
 
         # Show the lines
         #self.laneDetector.showImage()
-        cv2.imshow('DetectedLines', detectedLanes.astype(float)*255)
+        # cv2.imshow('DetectedLines', detectedLanes.astype(float)*255)
 
 
-        cv2.waitKey(15)
+        # cv2.waitKey(15)
 
     def cbImage(self, img_msg):
         image = np.asarray(self.bridge.imgmsg_to_cv(img_msg))
@@ -132,19 +150,8 @@ class Ros2Python:
         #self.grassDetector.updateImage(image)
 
 def main():
-    laneDetect = LaneDetector((240,320))
-    obDetect = ObstacleDetector((240,320))
-    # Init with H,S,V thresholds
-    grassDetect = GrassDetector(45, 25, 35)
-
-    # We assume that the normal of the plane is pointing straight up in the
-    # vision (-Y direction)
-    obDetect.setNormalConstraint( np.array([0.,-1.,0.]) )
-    # And allow the search to deviate only 30 degrees from that
-    obDetect.angleConstraint = 30.
-
     # Set up the ROS node for pulling in the images
-    data = Ros2Python(obDetect,laneDetect,grassDetect)
+    data = Ros2Python()
     rospy.init_node('Ros2Python', anonymous=True)
 
     try:
