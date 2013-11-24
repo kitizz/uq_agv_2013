@@ -1,0 +1,5 @@
+import cv2
+
+
+class Navigation:
+	"Navigation of a vehicle through a map"
