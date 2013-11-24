@@ -18,9 +18,9 @@ class GrassDetector:
         self.mask = mask
 
     def findGrass(self):
-        imBlur = cv2.GaussianBlur(self.image, (29, 29), 0)
+        imBlur = cv2.GaussianBlur(self.image.copy(), (21, 21), 0)
 
-        cv2.imshow('Image', imBlur)
+        #cv2.imshow('Image', imBlur)
         # cv2.imshow('Mask', self.mask.astype(float)*255)
 
         imgHsv = cv2.cvtColor(imBlur, cv2.COLOR_BGR2HSV)
@@ -33,7 +33,7 @@ class GrassDetector:
 
         # Select the pixels in the image that are close to this colour
         deltas = np.abs(imgHsv.astype(float) - meanHsv)
-        self.grassMask = (deltas < self.thresh).all(axis=2)
+        self.grassMask = np.logical_or(self.mask, (deltas < self.thresh).all(axis=2))
 
         return self.grassMask
 

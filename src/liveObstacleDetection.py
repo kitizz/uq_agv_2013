@@ -39,6 +39,10 @@ class Ros2Python:
         self.subPoints = rospy.Subscriber("/points2",\
             PointCloud2, self.cbPoints, queue_size=1)
 
+        self.images = []
+        self.imageStamps = []
+        self.imageInd = 0
+
         self.bridge = CvBridge()
 
         self.objectDetector = objectDetector
@@ -57,7 +61,29 @@ class Ros2Python:
 
         # ObDetector only recalculates everything when the cloud is updated
         cloud = np.dstack((cloud['x'], cloud['y'], cloud['z']))
-        print cloud.dtype
+
+        pointT = point_msg.header.stamp.to_sec()
+
+        print 'Point Time:', pointT
+        print 'Image Times:', self.imageStamps
+        image = None
+        for i in range(len(self.imageStamps)):
+            imageT = self.imageStamps[i]
+            if imageT > pointT:
+                image = self.images[i]
+                break
+
+        if image==None:
+            print 'Image not assigned'
+            return
+        else:
+            self.images = self.images[i:]
+            self.imageStamps = self.imageStamps[i:]
+
+        self.objectDetector.updateImage(image)
+        self.laneDetector.updateImage(image)
+        self.grassDetector.updateImage(image)
+
         self.objectDetector.updatePoints(cloud)
 
         ##### Jared, these are the 2 most useful variables for you:
@@ -67,7 +93,7 @@ class Ros2Python:
             plane/ground, 2 if that pixel is an object, and 0 otherwise.
         '''
         mask = self.objectDetector.getPlaneObjectMask()
-        self.grassDetector.updateMask(mask)
+        self.grassDetector.updateMask(mask==1)
         grassMask = self.grassDetector.findGrass()
 
         ''' obsacleCloud: a list of 2D points relative to the camera.
@@ -98,16 +124,18 @@ class Ros2Python:
 
     def cbImage(self, img_msg):
         image = np.asarray(self.bridge.imgmsg_to_cv(img_msg))
-        #self.images.append(image)
-        self.objectDetector.updateImage(image)
-        self.laneDetector.updateImage(image)
-        self.grassDetector.updateImage(image)
+        self.images.append(image)
+        self.imageStamps.append(img_msg.header.stamp.to_sec())
+
+        #self.objectDetector.updateImage(image)
+        #self.laneDetector.updateImage(image)
+        #self.grassDetector.updateImage(image)
 
 def main():
     laneDetect = LaneDetector((240,320))
     obDetect = ObstacleDetector((240,320))
     # Init with H,S,V thresholds
-    grassDetect = GrassDetector(45, 30, 35)
+    grassDetect = GrassDetector(45, 25, 35)
 
     # We assume that the normal of the plane is pointing straight up in the
     # vision (-Y direction)
