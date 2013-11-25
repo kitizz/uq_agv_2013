@@ -40,35 +40,46 @@ class Ros2Python:
             PointCloud2, self.cbPoints, queue_size=1)
 
         self.images = []
+        self.mask = None
         self.imageStamps = []
         self.imageInd = 0
 
         self.bridge = CvBridge()
 
+        self.showDetected = False
+
+        self.obstacleCloud = np.array([])
         if objectDetector:
             self.objectDetector = objectDetector
         else:
-            obDetect = ObstacleDetector((240,320))
+            self.objectDetector = ObstacleDetector((240,320))
             # We assume that the normal of the plane is pointing straight up
             # in the vision (-Y direction)
-            obDetect.setNormalConstraint( np.array([0.,-1.,-0.2.]) )
+            self.objectDetector.setNormalConstraint( np.array([0.,-1.,-0.2]) )
             # And allow the search to deviate only 30 degrees from that
-            obDetect.angleConstraint = 30.
+            self.objectDetector.angleConstraint = 30.
 
         if laneDetector:
             self.laneDetector = laneDetector
         else:
-            laneDetect = LaneDetector((240,320))
+            self.laneDetector = LaneDetector((240,320))
 
         if grassDetector:
             self.grassDetector = grassDetector
         else:
             # Init with H,S,V thresholds
-            grassDetect = GrassDetector(45, 25, 35)
+            self.grassDetector = GrassDetector(45, 35, 35)
 
         if VERBOSE:
             print "Subscribed to /left/image_rect_color"
             print "Subscribed to /points2"
+
+    def run(self):
+        rospy.init_node('Ros2Python', anonymous=True)
+        try:
+            rospy.spin()
+        except KeyboardInterrupt:
+            print "Shutting down liveObstacleDetection module"
 
     def cbPoints(self, point_msg):
         if VERBOSE:
@@ -81,8 +92,8 @@ class Ros2Python:
 
         pointT = point_msg.header.stamp.to_sec()
 
-        # print 'Point Time:', pointT
-        # print 'Image Times:', self.imageStamps
+        #print 'Point Time:', pointT
+        #print 'Image Times:', self.imageStamps
         image = None
         for i in range(len(self.imageStamps)):
             imageT = self.imageStamps[i]
@@ -91,11 +102,9 @@ class Ros2Python:
                 break
 
         if image==None:
-            print 'Image not assigned'
-            return
-        else:
-            self.images = self.images[i:]
-            self.imageStamps = self.imageStamps[i:]
+            image = self.images[i]
+        self.images = self.images[i:]
+        self.imageStamps = self.imageStamps[i:]
 
         self.objectDetector.updateImage(image)
         self.laneDetector.updateImage(image)
@@ -110,9 +119,21 @@ class Ros2Python:
             plane/ground, 2 if that pixel is an object, and 0 otherwise.
         '''
         self.mask = self.objectDetector.getPlaneObjectMask()
-        self.grassDetector.updateMask(mask==1)
-        grassMask = self.grassDetector.findGrass()
+        self.grassDetector.updateMask(self.mask==1)
+        grassMask = np.logical_and(self.grassDetector.findGrass(), self.mask!=2)
         self.mask[grassMask] = 1
+
+        model = self.objectDetector.model
+        planeInd = model.coord2ind( np.array( np.where(self.mask==1) ).T )
+        planeInd = planeInd.astype(int)
+        success, coeff = model.optimiseModelCoefficients(\
+            planeInd,self.objectDetector.coeff)
+        success, newInd = model.selectWithinDistance(coeff, 0.15)
+        self.objectDetector.coeff = coeff
+
+        print newInd.shape
+        print newInd
+        self.mask[ model.ind2coord(newInd) ] = 1
 
         ''' obsacleCloud: a list of 2D points relative to the camera.
             The positive X-axis goes to the right of the camera.
@@ -125,7 +146,11 @@ class Ros2Python:
         detectedLanes = self.laneDetector.findLines()
         self.detectedLanes = np.logical_and(detectedLanes, self.mask==1)
 
-
+        if self.showDetected:
+            #print 'Showing Detected'
+            self.objectDetector.showDetected(self.mask)
+            self.showDetected = False
+            cv2.waitKey(10)
         #self.objectDetector.showDepth()
         # Show the plane and abjects
         # im = self.objectDetector.image.copy()

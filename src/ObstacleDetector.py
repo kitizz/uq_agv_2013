@@ -24,6 +24,8 @@ class ObstacleDetector:
         self.coeff = np.array([0.,0.,1.,-15.])
         self.coeffRating = 1.
 
+        self.model = None
+
         self.planeObjectMask = np.zeros(size)
         self.obstacleCloud = np.array([])
 
@@ -78,19 +80,19 @@ class ObstacleDetector:
     def update(self):
         # This is where the magic happens
         self.depth = np.nan_to_num(self.points[...,...,2])
-        print 'Points', self.points.shape
+        #` 'Points', self.points.shape
         # self.depth /= 10.
         # cv2.imshow('Depth', self.depth/10.)
 
-        model = SACModelPlane.SACModelPlane(self.points)
+        self.model = SACModelPlane.SACModelPlane(self.points)
 
         startCoeff = None
         if self.coeffRating > 0.3: # 30 percent coverage
-            success, initialFit = model.selectWithinDistance(self.coeff, 0.1)
+            success, initialFit = self.model.selectWithinDistance(self.coeff, 0.1)
             if len(initialFit) > 10: startCoeff = self.coeff
-            print 'Initial Fit:', len(initialFit)
+            #print 'Initial Fit:', len(initialFit)
 
-        ran = RRansac.RRansac(model, 0.15)
+        ran = RRansac.RRansac(self.model, 0.15)
         ran.maxIterations = 200
         ran.fractionPretest = 0.01
 
@@ -108,7 +110,7 @@ class ObstacleDetector:
         # success, inliearInd = model.selectWithinDistance(self.coeff, 0.15)
 
         N = float(len(inlierInd))
-        self.coeffRating = N/len(model.indices)
+        self.coeffRating = N/len(self.model.indices)
 
         # Ensure that the plane is always facing "up" (Y-axis negative)
         if np.sign(self.coeff[1]) > 0:
@@ -116,8 +118,8 @@ class ObstacleDetector:
 
         # From points not defined as the plane, we define object points as
         # points that are above the ground plane (negative side)
-        outlierInd = np.setdiff1d(model.indices, inlierInd)
-        success, dist = model.getDistancesToModel(self.coeff, \
+        outlierInd = np.setdiff1d(self.model.indices, inlierInd)
+        success, dist = self.model.getDistancesToModel(self.coeff, \
             subset=outlierInd, signed=True)
         if not success: return
 
@@ -125,16 +127,19 @@ class ObstacleDetector:
 
         # Clear and remark the mask
         self.planeObjectMask[...,...] = 0
-        self.planeObjectMask[model.ind2coord(inlierInd)] = 1
-        self.planeObjectMask[model.ind2coord(objectInd)] = 2
+        self.planeObjectMask[self.model.ind2coord(inlierInd)] = 1
+        self.planeObjectMask[self.model.ind2coord(objectInd)] = 2
         
         # self.showObstacles(objectInd, inlierInd)
 
         # Get the locations of the obstacles in the plane
-        rot = self.getRotationMatrixOfPlane(self.coeff).T
-        projected = np.dot( rot, model.points[objectInd].T ).T
-        self.obstacleCloud = projected[...,[0,2]]
-
+        #rot = self.getRotationMatrixOfPlane(self.coeff).T
+        #projected = np.dot( rot, model.points[objectInd].T ).T
+        #self.obstacleCloud = projected[...,[0,2]]
+        #print 'Getting Obstacle Cloud', model.points.shape, type(model.points)
+        #print objectInd.shape
+        self.obstacleCloud = self.model.points[objectInd,:][:,[0,2]]
+        
         # self.showMap(obstacleCloud)
         
         # cv2.waitKey(10)
@@ -143,9 +148,12 @@ class ObstacleDetector:
         cv2.imshow('Depth', self.depth/10.)
 
     def showDetected(self, mask):
+        if mask == None: return
+        #print 'Showing Detected'
         im = self.image.copy()
         im[mask==1] = [255,0,0]
         im[mask==2] = [0,0,255]
+        #print im.shape
         cv2.imshow('DetectedObjects', im)
 
     def showObstacles(self, obstacleIndices, planeIndices=None):
@@ -326,13 +334,13 @@ def main():
         #   nDepths = cnt
         # el
         elif label == 'points' and cnt > nPoints:
-            print cnt
+            #print cnt
             A = np.load(mypath + f)
             points.append(PointsMsg(A[0], A[1]))
             nPoints = cnt
 
 
-    print "Images:", nImages, "Depths:", nDepths, "Points:", nPoints
+    #print "Images:", nImages, "Depths:", nDepths, "Points:", nPoints
 
     # Now let's load them in, in the correct order to the detector
     indImg = 0

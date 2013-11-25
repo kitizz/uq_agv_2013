@@ -77,7 +77,7 @@ class RRansac:
 
 			if it > self.maxIterations: break
 
-		print 'Done in', it, 'iterations'
+		#print 'Done in', it, 'iterations'
 		if len(bestInliers) == 0:
 			inliers = np.array([])
 			return False, np.array([0.,0.,1.,0.]), np.array([]), np.array([])

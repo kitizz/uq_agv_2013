@@ -28,6 +28,11 @@ class SACModelPlane:
     def ind2coord(self, ind):
         return (self._ind2coord[0][ind], self._ind2coord[1][ind])
 
+    def coord2ind(self, coord):
+        ind = self._coord2ind[coord[:,0], coord[:,1]]
+        ind = ind[ind!=-1]
+        return ind
+
     def getRandomSamples(self, n, subset=None):
         if subset == None or len(subset) < n: subset = self.indices
         
@@ -207,8 +212,8 @@ class SACModelPlane:
         pointsHom = np.column_stack( (points, np.ones(N)) )
         [u, d, v] = np.linalg.svd(pointsHom,0)
 
-        print pointsHom.shape
-        print v
+        #print pointsHom.shape
+        #print v
         modelCoeff = v[3,:];                    # Solution is last column of v.
         nn = np.linalg.norm(modelCoeff[0:3])
         modelCoeff = modelCoeff / nn
