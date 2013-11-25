@@ -61,8 +61,8 @@ class Navigation:
 
 		#for i in range(10):
 		while (robot.y != self.goal.y or robot.x != self.goal.x) :
-			if testvar%10 == 0:
-				newObs = obstacle.Obstacle(random.randint(0,height),random.randint(0,width), 10)
+			if testvar%2 == 0:
+				newObs = obstacle.Obstacle(random.randint(0,height),random.randint(0,width), 40)
 				self.map.placeObstacle(newObs,3)
 				self.obsList.append(newObs)
 				#Place obstacles on map
