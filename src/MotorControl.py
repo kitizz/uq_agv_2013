@@ -34,6 +34,7 @@ class MotorControl:
 		# 30 = full speed backwards
 		# 90 = no speed
 		# 150 = full speed forwards
+		v = max( min(v,100), -100)
 		vel = int( float(v)/60 + 90 )
 		self.ser.write('L' + str(vel))
 		self.ser.flush()
@@ -42,6 +43,7 @@ class MotorControl:
 		''' setLeftMotor(velocity)
 		Takes a velocity valued between -100 and 100 to send to the left motor.
 		'''
+		v = max( min(v,100), -100)
 		vel = int (float(v)/60 + 90 )
 		self.ser.write('R' + str(vel))
 		self.ser.flush()
