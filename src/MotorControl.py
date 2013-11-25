@@ -17,13 +17,18 @@ class MotorControl:
 		# 90 = no speed
 		# 150 = full speed forwards
 		vel = int( float(v)/60 + 90 )
-		ser.write('l' + str(vel))
+		self.ser.write('L' + str(v))
 
 	def setRightMotor(self, v):
 		''' setLeftMotor(velocity)
 		Takes a velocity valued between -100 and 100 to send to the left motor.
 		'''
 		vel = int (float(v)/60 + 90 )
-		ser.write('r' + str(vel))
+		self.ser.write('R' + str(v))
+
+	def setMotor(self, vL, vR):
+		for i in range(10):
+			self.ser.write('L' + str(vL))
+			self.ser.write('R' + str(vR))
 
 	
