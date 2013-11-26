@@ -7,6 +7,7 @@ import time
 import numpy as np
 
 from MotorControl import *
+import GPS
 
 # r2p = None
 
@@ -21,7 +22,7 @@ def doControl(r2p, motorControl):
 	objectCloud = r2p.obstacleCloud.copy()
 	if len(objectCloud) == 0: return
 
-
+	print "There are obstacles"
 
 	keepFar = objectCloud > np.array([-np.inf, 0])
 	keepNear = objectCloud < np.array([np.inf, 5])
@@ -29,14 +30,21 @@ def doControl(r2p, motorControl):
 	objectCloud = objectCloud[keep]
 
 
-	print 'Setting right motor'
-	motorControl.setLeftMotor(100)
-	# time.sleep(0.25)
-	motorControl.setRightMotor(100)
-	print 'set right motor'
+	# print 'Setting right motor'
+	# motorControl.setLeftMotor(100)
+	# # time.sleep(0.25)
+	# motorControl.setRightMotor(100)
+	# print 'set right motor'
+
+	print 'Checking amount of obstacles'
 
 
-	if len(objectCloud) < 800: return # Not enough good points
+	if len(objectCloud) < 300: return # Not enough good points
+
+	# The program has now found an obstacle
+	print "Object Cloud"
+	for i in range(len(objectCloud)):
+		obstaclePlace = (objectCloud[0],objectCloud[1],1)
 
 	#print len(objectCloud)
 	#print objectCloud
@@ -45,33 +53,59 @@ def doControl(r2p, motorControl):
 	# return
 	if meanObjects[1] < 5:
 		if meanObjects[0] > 0:
+			print 'Setting right motor 150'
 			motorControl.setRightMotor(150)
 			motorControl.setLeftMotor(0)
-			print 'Setting right motor'
+			print 'Set right motor'
+			print "||||||||||||||||||||||||||||||||||||||||"
 		else:
-			motorControl.setRightMotor(0)
-			motorControl.setLeftMotor(100)
-			print 'Setting left motor'
+			print 'Setting left motor 100'
+			motorControl.setRightMotor(150)
+			motorControl.setLeftMotor(0)
+			print 'Set left motor'
+			print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+
 
 
 def controlLoop(r2p, loop_time):
-	motorControl = MotorControl('/dev/ttyACM0', 9600)
+	i = 0
+	motorControl = MotorControl('/dev/ttyACM', range(4), 9600)
 	while True:
+
+		#if not motorControl.ser.isOpen():
+		#	motorControl.ser.open()
 		now = time.time()
 		doControl(r2p, motorControl)
 		elapsed = (time.time() - now)
 		# Should be good enough
-		time.sleep( loop_time - elapsed )
+		time.sleep( abs(int(loop_time - elapsed)) )
 		print motorControl.ser.isOpen()
+		#if i%10 == 0:
+		#	motorControl.ser.close()
+		print "------------------------------------IN CONTROL------------------------------------"
+		i+=1
 
+def print_gps(gps, loop_time):
+	#print gps.portlist
+	gps.open_port('/dev/ttyUSB0')
+	curLatitude = 0;
+	curLongitude = 0;
+	while True:
+		curLatitude = gps.latitude
+		curLongitude = gps.longitude
+		#sudo rm -r -f /path/rint gps.time, gps.latitude, gps.longitude
 
 def main():
 	r2p = Ros2Python()
+	gps = GPS.GPSData()
+
+	# Print GPS
+	#thread.start_new_thread(print_gps, (gps, 0.1))
 
 	# Start the ROS loop
 	#thread.start_new_thread(rosLoop, (r2p,))
 	# Start control loop @ 10Hz
-	thread.start_new_thread(controlLoop, (r2p, 0.1))
+	thread.start_new_thread(controlLoop, (r2p, 2))
 
 	r2p.run()
 

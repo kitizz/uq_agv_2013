@@ -112,6 +112,7 @@ class Ros2Python:
 
         self.objectDetector.updatePoints(cloud)
 
+
         ##### Jared, these are the 2 most useful variables for you:
 
         ''' mask: is a numpy array the same size as the camera image. The

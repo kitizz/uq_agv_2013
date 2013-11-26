@@ -3,7 +3,7 @@ import serial
 
 class MotorControl:
 
-	def __init__(self, prefix, ports=[], baud=9600):
+	def __init__(self, prefix, ports=[], baud=115200):
 		'''
 		Connect the motor control at serial port defined as:
 		prefix: The port prefix, e.g. /dev/ttyUSB, /dev/ttyACM, etc.
@@ -34,17 +34,27 @@ class MotorControl:
 		# 30 = full speed backwards
 		# 90 = no speed
 		# 150 = full speed forwards
-		vel = int( float(v)/60 + 90 )
-		self.ser.write('L' + str(vel))
+		#if not self.ser.isOpen():
+		#	self.ser.open()
+		vel = int( float(v)*0.6 + 90 )
+		sendCommand = 'L' + str(vel)+'\n'
+		print 'Sending:', sendCommand
+		self.ser.write(sendCommand)
 		self.ser.flush()
+		#self.ser.close()
 
 	def setRightMotor(self, v):
 		''' setLeftMotor(velocity)
 		Takes a velocity valued between -100 and 100 to send to the left motor.
 		'''
-		vel = int (float(v)/60 + 90 )
-		self.ser.write('R' + str(vel))
+		#if not self.ser.isOpen():
+		#	self.ser.open()
+		vel = int (float(v)*0.6 + 90 )
+		sendCommand = 'R' + str(vel) + '\n'
+		print 'Sending:', sendCommand
+		self.ser.write(sendCommand)
 		self.ser.flush()
+		#self.ser.close()
 
 	def setMotor(self, vL, vR):
 		self.setLeftMotor(vL)
