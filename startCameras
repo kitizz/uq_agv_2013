@@ -1,0 +1,6 @@
+#!/bin/bash
+
+roscore &
+roslaunch uvc_camera stereo_node_agvc.launch &
+rosrun stereo_image_proc stereo_image_proc &
+
