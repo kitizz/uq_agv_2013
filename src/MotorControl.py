@@ -3,11 +3,7 @@ import serial
 
 class MotorControl:
 
-<<<<<<< HEAD
-	def __init__(self, prefix, ports=[], baud=115200):
-=======
 	def __init__(self, prefix='/dev/ttyACM', ports=[], baud=9600):
->>>>>>> 4ec647cc1562bfdf4d98500d2b1d98927ea1b65f
 		'''
 		Connect the motor control at serial port defined as:
 		prefix: The port prefix, e.g. /dev/ttyUSB, /dev/ttyACM, etc.
@@ -44,6 +40,8 @@ class MotorControl:
 		self.ser.write('L' + str(vel))
 		self.ser.flush()
 		#self.ser.close()
+		if not self.ser.isOpen:
+			self.ser.open()
 
 	def setRightMotor(self, v):
 		''' setLeftMotor(velocity)

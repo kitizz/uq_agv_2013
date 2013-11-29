@@ -1,0 +1,1288 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"colour",
+				"colour_count"
+			],
+			[
+				"colou",
+				"colour_count"
+			],
+			[
+				"colo",
+				"colour_count"
+			],
+			[
+				"long0",
+				"long0rad"
+			],
+			[
+				"dest",
+				"des_control"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"datagen",
+				"datagen"
+			],
+			[
+				"posi",
+				"positiony"
+			],
+			[
+				"motor",
+				"motorMin"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"is",
+				"isCreditCard"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"in",
+				"invID"
+			],
+			[
+				"customer",
+				"customerID"
+			],
+			[
+				"getDom",
+				"getDomColourinDir"
+			],
+			[
+				"command",
+				"command"
+			],
+			[
+				"Scr",
+				"scrolledpanel"
+			],
+			[
+				"OnSave",
+				"OnSavePuzzle"
+			],
+			[
+				"beaconpo",
+				"beaconPosYtxtbox"
+			],
+			[
+				"beaconPo",
+				"beaconPosXtxtbox"
+			],
+			[
+				"Pin",
+				"PinCmbBox"
+			],
+			[
+				"pi",
+				"sensorPinList"
+			],
+			[
+				"Insert",
+				"InsertStringItem"
+			],
+			[
+				"sensorL",
+				"sensorList"
+			],
+			[
+				"beaconID",
+				"beaconIDtxtbox"
+			],
+			[
+				"puzzle",
+				"puzzleList"
+			],
+			[
+				"puzz",
+				"puzzleList"
+			],
+			[
+				"Show",
+				"ShowModal"
+			],
+			[
+				"File",
+				"FileDialog"
+			],
+			[
+				"beacon",
+				"beaconList"
+			],
+			[
+				"idn",
+				"ID_ANY"
+			],
+			[
+				"appe",
+				"Append"
+			],
+			[
+				"puz",
+				"puzzlTab"
+			],
+			[
+				"pu",
+				"puzzleCmbbox"
+			],
+			[
+				"puzzl",
+				"puzzleCmbbox"
+			],
+			[
+				"event",
+				"eventTxtbox"
+			],
+			[
+				"eventlbl",
+				"eventlbl"
+			],
+			[
+				"Add",
+				"AddGrowableCol"
+			],
+			[
+				"Id",
+				"IDbox"
+			],
+			[
+				"puzzleID",
+				"puzzleIDcmbbox"
+			],
+			[
+				"get",
+				"GetApp"
+			],
+			[
+				"addEve",
+				"addEventInfo"
+			],
+			[
+				"Get",
+				"GetValue"
+			],
+			[
+				"EVT_",
+				"EVT_BUTTON"
+			],
+			[
+				"ALIGN",
+				"ALIGN_CENTER_VERTICAL"
+			],
+			[
+				"main",
+				"mainTabs"
+			],
+			[
+				"puzzleList",
+				"PuzzlePanelList"
+			],
+			[
+				"puzzlePan",
+				"PuzzlePanelList"
+			],
+			[
+				"PuzzlePane",
+				"PuzzlePanelList"
+			],
+			[
+				"vBox",
+				"vboxL"
+			],
+			[
+				"cur",
+				"curStage"
+			],
+			[
+				"Data",
+				"DataSource"
+			],
+			[
+				"stats",
+				"statusBox"
+			],
+			[
+				"evt",
+				"EVT_MENU"
+			],
+			[
+				"fitem",
+				"fitemSave"
+			],
+			[
+				"eve",
+				"eventList"
+			],
+			[
+				"removee",
+				"removeEventInfo"
+			],
+			[
+				"remove",
+				"removeEventInfo"
+			],
+			[
+				"vB",
+				"vboxL"
+			],
+			[
+				"a",
+				"a"
+			],
+			[
+				"vbo",
+				"vboxR"
+			],
+			[
+				"posingr",
+				"posinGrid"
+			],
+			[
+				"grid",
+				"gridSize"
+			],
+			[
+				"beac",
+				"beaconList"
+			],
+			[
+				"test",
+				"testBeac1"
+			],
+			[
+				"tes",
+				"testBeac2"
+			],
+			[
+				"statu",
+				"statusBox"
+			],
+			[
+				"add",
+				"Add"
+			],
+			[
+				"point",
+				"pointsTxt"
+			],
+			[
+				"points",
+				"pointslbl"
+			],
+			[
+				"ALIGN_",
+				"ALIGN_CENTER_VERTICAL"
+			],
+			[
+				"ALIG",
+				"ALIGN_CENTER_VERTICAL"
+			],
+			[
+				"incp",
+				"incompTxt"
+			],
+			[
+				"incom",
+				"incompLbl"
+			],
+			[
+				"complete",
+				"completeTxt"
+			],
+			[
+				"thre",
+				"thresTxtBox"
+			],
+			[
+				"beacons",
+				"beaconSensorbox"
+			],
+			[
+				"sens",
+				"sensorList"
+			],
+			[
+				"cmd",
+				"cmdSensorCmbbox"
+			],
+			[
+				"CB",
+				"CB_SORT"
+			],
+			[
+				"cmdid",
+				"cmdbIDcmbBox"
+			],
+			[
+				"cmdsval",
+				"cmdsValTxtbox"
+			],
+			[
+				"cmdsva",
+				"cmdsValLbl"
+			],
+			[
+				"Stati",
+				"StaticText"
+			],
+			[
+				"cmdsen",
+				"cmdSensorCmbbox"
+			],
+			[
+				"Sens",
+				"sensorNameList"
+			],
+			[
+				"bid",
+				"bIDList"
+			],
+			[
+				"Sta",
+				"StaticText"
+			],
+			[
+				"sensor",
+				"sensors"
+			],
+			[
+				"OnRemo",
+				"OnRemoveEvent"
+			],
+			[
+				"vbox",
+				"vbox"
+			],
+			[
+				"pin",
+				"PinCmbBox"
+			],
+			[
+				"comman",
+				"commandList"
+			],
+			[
+				"comma",
+				"commandList"
+			],
+			[
+				"even",
+				"eventPanelList"
+			],
+			[
+				"v",
+				"vboxL"
+			],
+			[
+				"hints",
+				"hintsTxt"
+			],
+			[
+				"Event",
+				"EventPanel"
+			],
+			[
+				"sThre",
+				"sThresDir"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"fite",
+				"fitemStartPuzz"
+			],
+			[
+				"OnS",
+				"OnStartStopPuzzle"
+			],
+			[
+				"ID",
+				"ID_ANY"
+			],
+			[
+				"com",
+				"completeTxt"
+			],
+			[
+				"thres",
+				"thresholds"
+			],
+			[
+				"GetIte",
+				"GetItemCount"
+			],
+			[
+				"threshol",
+				"thresholds"
+			],
+			[
+				"init",
+				"initiateEvent"
+			],
+			[
+				"Sensor",
+				"SensorValues"
+			],
+			[
+				"upda",
+				"updateSensors"
+			],
+			[
+				"h",
+				"mainHbox"
+			],
+			[
+				"bID",
+				"bID"
+			],
+			[
+				"gri",
+				"gridPanel"
+			],
+			[
+				"vBo",
+				"vboxR"
+			],
+			[
+				"Y",
+				"Ytxt"
+			],
+			[
+				"try",
+				"try	Try/Except"
+			],
+			[
+				"Button",
+				"Buttonbox"
+			],
+			[
+				"Grid",
+				"GridPanel"
+			],
+			[
+				"ge",
+				"GetApp"
+			],
+			[
+				"vb",
+				"vboxR"
+			],
+			[
+				"Stat",
+				"StaticBoxSizer"
+			],
+			[
+				"ALIGH",
+				"ALIGN_RIGHT"
+			],
+			[
+				"ALI",
+				"ALIGN_CENTER_VERTICAL"
+			],
+			[
+				"AL",
+				"ALIGN_CENTER_VERTICAL"
+			],
+			[
+				"prop",
+				"proportion"
+			],
+			[
+				"On",
+				"OnShowPopup"
+			],
+			[
+				"beaconPos",
+				"beaconPosYtxtbox"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/WHEELCHAIR_CTRL/WHEELCHAIR_CTRL.ino",
+			"settings":
+			{
+				"buffer_size": 1704,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/WHEELCHAIR_TEST_MOTORS/WHEELCHAIR_TEST_MOTORS.ino",
+			"settings":
+			{
+				"buffer_size": 379,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/TEG.py",
+			"settings":
+			{
+				"buffer_size": 2979,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/GPS_tiny.py",
+			"settings":
+			{
+				"buffer_size": 851,
+				"line_ending": "Windows",
+				"name": "import NMEA"
+			}
+		},
+		{
+			"file": "/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/pynmea/__init__.py",
+			"settings":
+			{
+				"buffer_size": 95,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/MotorControl.py",
+			"settings":
+			{
+				"buffer_size": 1457,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"latex",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"late",
+				"LaTeXTools: Jump to PDF"
+			],
+			[
+				"html",
+				"HTML Export: Current File"
+			],
+			[
+				"expo",
+				"HTML Export: Current File"
+			],
+			[
+				"export",
+				"HTML Export: Current File"
+			],
+			[
+				"expor",
+				"HTML Export: Current File"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet",
+				"Snippet: Cases"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"package control:Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"new",
+				"File: New View into File"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/pynmea/exceptions.py",
+		"/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/pynmea/nmea.py",
+		"/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/README",
+		"/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/setup.py",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/CSSE4011/CSSE4011 Final Project/python/Listener.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/GPS.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/GPS",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/MotorControl.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/TEG.py",
+		"/C/Users/JustinIndra/Documents/Arduino/bla/bla.ino",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/WHEELCHAIR_TEST_MOTORS/WHEELCHAIR_TEST_MOTORS.ino",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/.gitignore",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/WHEELCHAIR_CTRL/WHEELCHAIR_CTRL.ino",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/WHEELCHAIR_TEST_MOTORS.ino",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/testObstacleDodge.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/SERVOCONTROL.ino",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Chapter2-Background.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport-JRAHARDJO.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/Report/ReportStyle.sty",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Chapter1-Introduction.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/Report/DominantColourClassifier.bib",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/DominantColourClassifier.sublime-project",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/App-ARDroneBattery.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport.sublime-project",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/DominantColourClassifier.sublime-workspace",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/Report/DominantColourClassification.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Tourism - Dominant Colour Classifier/ColourDetect.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/PIDGraphing.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/PIDLoop.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/serialCommsToArduino.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/LatLongConvert.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/wxGraph.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/src/play/Justins/PID Loop.py",
+		"/C/Users/JustinIndra/Downloads/xcorr_demo.py",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/AGVC Wheelchair/Software/PID Loop.py",
+		"/C/Users/JustinIndra/Documents/GitHub/uq_agv_2013/README.md",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport-JRAHARDJO.toc",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/ReportStyle.sty",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Ch-GantrySystem.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Ch-Conclusion.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport-JRAHARDJO.bbl",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport-JRAHARDJO.pdf",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Ch-PriorArt.tex",
+		"/C/Users/JustinIndra/Dropbox/newLMS-bootstrap/page-registration2.php",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Ch-MechanicalDesign.tex",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/customize-plan.css",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/page-pricing.html",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/lib/animate.css",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/customize-plan.html",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/compiled/theme.css",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/compiled/index.css",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/contact.html",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/index.html",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/page-registration.html",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/js/jqBootstrapValidation.js",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/js/registration.js",
+		"/C/Users/JustinIndra/Dropbox/newLMS/js/custom.js",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/validation.html",
+		"/C/Users/JustinIndra/Downloads/jqBootstrapValidation by ReactiveRaven.htm",
+		"/C/Users/JustinIndra/Downloads/jqBootstrapValidation by ReactiveRaven_files/jqBootstrapValidation.js",
+		"/C/Users/JustinIndra/Downloads/jqBootstrapValidation by ReactiveRaven_files/ga.js",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Customer.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Invoice.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Product.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Product_Invoice.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Salesperson.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntax - Supplier.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/CSV2sql.py",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/compiled/pricing.css",
+		"/C/Users/JustinIndra/Dropbox/Clean Hero/css/compiled/contact.css",
+		"/C/Users/JustinIndra/Downloads/jQuery-Validate-Example-COMPLETE/jQuery-Validate-Example-COMPLETE/index.html",
+		"/C/xampp/htdocs/LMS-Bootstrap/js/validator-script.js",
+		"/C/xampp/htdocs/LMS-Bootstrap/registration.html",
+		"/C/xampp/htdocs/LMS-Bootstrap/js/jquery.validate.js",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/validator-style.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/js/jquery-script.js",
+		"/C/Users/JustinIndra/Downloads/jQuery-Validate-Example-COMPLETE/jQuery-Validate-Example-COMPLETE/style.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/fuelux/css/fuelux.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/fuelux-custom.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/bla.html",
+		"/C/xampp/htdocs/LMS-Bootstrap/index.html",
+		"/C/Users/JustinIndra/Dropbox/newLMS/contact.html",
+		"/C/Users/JustinIndra/Dropbox/newLMS/index.html",
+		"/C/xampp/htdocs/LMS-Bootstrap/fuelux/wizard.js",
+		"/C/xampp/htdocs/LMS-Bootstrap/fuelux/all.js",
+		"/C/Users/JustinIndra/Downloads/Fuel UX.html",
+		"/C/Users/JustinIndra/Downloads/jQuery-Validate-Example-COMPLETE/index.html",
+		"/C/xampp/htdocs/LMS-Bootstrap/js/fuelux-script.js",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/styles.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/bootstrap-theme.min.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/fuelux-style.css",
+		"/C/Users/JustinIndra/Downloads/jQuery-Validate-Example-COMPLETE/style.css",
+		"/C/Program Files (x86)/Arduino/libraries/SoftwareServo/examples/SerialServo/SerialServo.pde",
+		"/C/Users/JustinIndra/Downloads/jQuery-Validate-Example-COMPLETE/script.js",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Software/DroneBatteryRemoval/DroneBatteryRemoval.ino",
+		"/C/xampp/htdocs/LMS-Bootstrap/css/bootstrap-theme.css",
+		"/C/xampp/htdocs/LMS-Bootstrap/site/config/config.php",
+		"/C/xampp/htdocs/LMS-Bootstrap/site/panel/accounts/justin.php",
+		"/C/xampp/htdocs/LMS-Bootstrap/site/templates/default.php",
+		"/C/xampp/htdocs/LMS-Bootstrap/site/snippets/footer.php",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/C/xampp/htdocs/LMS-Bootstrap/index.php",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Software/Stepper_Control/Stepper_Control.ino",
+		"/C/Users/JustinIndra/Dropbox/arduino-1.0.3-windows/THESIS STUFF/sketch_may17a/sketch_may17a.ino",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntaxEntry.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Iteration2SqlCode.sql",
+		"/C/Users/JustinIndra/Google Drive/MGTS3203/Iteration Two/Sample SQL entry script/SQLSyntaxEntry.txt",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/HTML Export/HtmlExport.py",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/HTML Export/README.md",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/HTML Export/HtmlExport.pyc",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/Html Export/HtmlExport.sublime-settings",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/User/HtmlExport.sublime-settings",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/Users/JustinIndra/Downloads/Sample Data - Customer.csv",
+		"/C/Users/JustinIndra/Downloads/bla.py",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/SubmissionLetter.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/METR4900-FinalThesisReport-JRAHARDJO.bib",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/METR4900-TitlePage.tex",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Thesis Final Report/tex/Ch-FutureWork.tex",
+		"/C/Users/JustinIndra/Downloads/skel.tex",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/CSSE4011/CSSE4011 Final Project/python/BreakNEnterFramework/MainWindow.py",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/CSSE4011/CSSE4011 Final Project/python/Constants.py",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/CSSE4011/CSSE4011 Final Project/python/Overhead.h",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/WSN/wsn.tex",
+		"/C/Users/JustinIndra/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX.sublime-build",
+		"/C/Users/JustinIndra/Dropbox/2013 Semester 1/WSN/.sublime-project",
+		"/C/Users/JustinIndra/Dropbox/Projects/Mechatronics/Thesis - Parrot Drone Docking Station/Proposal/METR4900 Thesis Proposal.tex",
+		"/C/Users/JustinIndra/Google Drive/AGVC/Generate_PPM_signal_V0.2/Generate_PPM_signal_nodelay/Generate_PPM_signal_nodelay.ino"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"print_gps",
+			"2",
+			"0.3",
+			"img",
+			"lat1",
+			"R",
+			"d",
+			"lat1",
+			"self.set_button",
+			"self.pause_button",
+			"pause_button",
+			"sizer.Add(X_Box, 0, wx.ALL, 10)",
+			"manual_text",
+			"manual_box",
+			"Y",
+			"desY",
+			"abs",
+			"speed,",
+			"speed",
+			"lasterror",
+			"curPos",
+			"PIDx",
+			"PID",
+			"x",
+			"0",
+			"abs",
+			"boundcontrol",
+			"motor",
+			"terminals",
+			"sec:bl_hotswap",
+			"\\section",
+			"section",
+			"Section",
+			"section",
+			"Section",
+			"section",
+			"subsection",
+			"extra",
+			"railsystem",
+			"-",
+			"gs_aluminiumprofile",
+			"Contact",
+			"contact",
+			"]\n",
+			"pm",
+			"+/-",
+			"pm",
+			"50mm",
+			"in_pricing",
+			"#footer",
+			"info",
+			"#footer",
+			"footer",
+			"testimonials",
+			"info",
+			"credits",
+			"info",
+			"row info",
+			"row",
+			"row-info",
+			"section_header",
+			"footer_header",
+			"showcasing",
+			"scene2",
+			"return",
+			"value",
+			"tryABN",
+			"return",
+			"block",
+			"Salesperson",
+			"Product_Invoice",
+			"Invoice",
+			"Customer",
+			"Supplier",
+			"Salesperson",
+			"Product_Invoice",
+			"Product",
+			"Invoice",
+			"Customer",
+			"background",
+			"cover",
+			"background",
+			"form",
+			"formname",
+			"in_pricing",
+			"</strong>",
+			"<strong>",
+			"strong",
+			"number",
+			"rules",
+			"ul ",
+			"wizard",
+			"previous",
+			"btnWizard",
+			"fuel",
+			"assets",
+			"<li><a href=\"index.html\">Home</a></li>",
+			"div",
+			"customers",
+			"gantry",
+			"NUM_CLUSTERS",
+			"addpage",
+			"Ziguino",
+			"SNIDE",
+			"SNES",
+			"table",
+			"tabular",
+			"figure",
+			"port",
+			"vboxR",
+			"puzzleList",
+			"dlg",
+			"A",
+			"a",
+			"onbid",
+			"1",
+			"self.index",
+			"puzzID",
+			"puzzIDList",
+			"puzzlePanelList",
+			"puzzIDList",
+			"beaconIDcmbbox",
+			")\n",
+			"eventPanelList",
+			"eventList",
+			"index",
+			"hbox",
+			"eventIDlbl"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/WHEELCHAIR_CTRL/WHEELCHAIR_CTRL.ino",
+					"settings":
+					{
+						"buffer_size": 1704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								513,
+								513
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Arduino-like IDE/Arduino.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 273.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/WHEELCHAIR_TEST_MOTORS/WHEELCHAIR_TEST_MOTORS.ino",
+					"settings":
+					{
+						"buffer_size": 379,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								339,
+								339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Arduino-like IDE/Arduino.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/TEG.py",
+					"settings":
+					{
+						"buffer_size": 2979,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2663,
+								2663
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1034.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/GPS_tiny.py",
+					"settings":
+					{
+						"buffer_size": 851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import NMEA",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/JustinIndra/Downloads/pynmea-0.6.0.tar/pynmea-0.6.0/pynmea/__init__.py",
+					"settings":
+					{
+						"buffer_size": 95,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/MotorControl.py",
+					"settings":
+					{
+						"buffer_size": 1457,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 128.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"Report/tex-files/Ch-Methodology.tex"
+			],
+			[
+				"con",
+				"tex/Ch-Conclusion.tex"
+			],
+			[
+				"dis",
+				"tex/Ch-Discussion.tex"
+			],
+			[
+				"ot",
+				"tex/Ch-OtherFeatures.tex"
+			],
+			[
+				"sof",
+				"tex/Ch-Software.tex"
+			],
+			[
+				"gan",
+				"tex/Ch-GantrySystem.tex"
+			],
+			[
+				"bat",
+				"tex/Ch-BatteryLock.tex"
+			],
+			[
+				"lan",
+				"tex/Ch-LandingPad.tex"
+			],
+			[
+				"back",
+				"tex/Chapter2-Background.tex"
+			],
+			[
+				"in",
+				"tex/Chapter1-Introduction.tex"
+			],
+			[
+				"ga",
+				"tex/Ch-GantrySystem.tex"
+			],
+			[
+				"titl",
+				"tex/METR4900-TitlePage.tex"
+			],
+			[
+				"int",
+				"tex/Chapter1-Introduction.tex"
+			],
+			[
+				"intr",
+				"tex/Chapter1-Introduction.tex"
+			],
+			[
+				"gant",
+				"tex/Ch-GantrySystem.tex"
+			],
+			[
+				"disc",
+				"tex/Ch-Discussion.tex"
+			],
+			[
+				"bi",
+				"METR4900-FinalThesisReport-JRAHARDJO.bib"
+			],
+			[
+				"com",
+				"tex/Ch-ComponentIntegration.tex"
+			],
+			[
+				"fut",
+				"tex/Ch-FutureWork.tex"
+			],
+			[
+				"app",
+				"tex/App-Others.tex"
+			],
+			[
+				"title",
+				"tex/METR4900-TitlePage.tex"
+			],
+			[
+				"cha",
+				"tex/Chapter1-Introduction.tex"
+			],
+			[
+				"repo",
+				"ReportStyle.sty"
+			],
+			[
+				"tit",
+				"tex/METR4900-TitlePage.tex"
+			],
+			[
+				"sub",
+				"tex/SubmissionLetter.tex"
+			],
+			[
+				"metr",
+				"METR4900 Thesis Proposal.tex"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 313.0,
+	"status_bar_visible": true
+}
