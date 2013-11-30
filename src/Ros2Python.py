@@ -132,8 +132,8 @@ class Ros2Python:
         success, newInd = model.selectWithinDistance(coeff, 0.15)
         self.objectDetector.coeff = coeff
 
-        print newInd.shape
-        print newInd
+        #print newInd.shape
+        #print newInd
         self.mask[ model.ind2coord(newInd) ] = 1
 
         ''' obsacleCloud: a list of 2D points relative to the camera.

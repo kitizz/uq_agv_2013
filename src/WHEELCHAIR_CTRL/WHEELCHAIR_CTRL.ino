@@ -14,7 +14,7 @@ int valueR=90;
 void setup(){
   motor1.attach(motorA);
   motor2.attach(motorB);
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 

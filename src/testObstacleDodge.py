@@ -3,6 +3,7 @@
 from Ros2Python import *
 import thread
 import time
+import math
 
 import numpy as np
 
@@ -38,8 +39,16 @@ def doControl(r2p, motorControl):
 
 	print 'Checking amount of obstacles'
 
+	scaler = 200
+	motorSpeedR = scaler
+	motorSpeedL = scaler
 
-	if len(objectCloud) < 300: return # Not enough good points
+	if len(objectCloud) < 300: 
+		print "Going forward"
+		# motorControl.setLeftMotor(scaler)
+		# motorControl.setRightMotor(scaler)
+		motorControl.setMotor(motorSpeedL, motorSpeedR)
+		return # Not enough good points
 
 	# The program has now found an obstacle
 	print "Object Cloud"
@@ -50,20 +59,41 @@ def doControl(r2p, motorControl):
 	#print objectCloud
 	meanObjects = np.mean(objectCloud, axis=0)
 	print 'Mean of Object Location', meanObjects
+	print (meanObjects[0],meanObjects[1])
 	# return
-	if meanObjects[1] < 5:
-		if meanObjects[0] > 0:
-			print 'Setting right motor 150'
-			motorControl.setRightMotor(150)
-			motorControl.setLeftMotor(0)
-			print 'Set right motor'
-			print "||||||||||||||||||||||||||||||||||||||||"
-		else:
-			print 'Setting left motor 100'
-			motorControl.setRightMotor(150)
-			motorControl.setLeftMotor(0)
-			print 'Set left motor'
-			print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	if meanObjects[0]>12*math.pi/180:
+		print 'Setting right motor'
+		#motorControl.setRightMotor(min(100,75/meanObjects[1]))
+		motorSpeedR = min(100,scaler/meanObjects[1])
+		motorSpeedL = 0
+	elif meanObjects[0]<-2*math.pi/180:
+		print 'Setting left motor'
+		#motorControl.setLeftMotor(min(100,scaler/meanObjects[1]))
+		motorSpeedL = min(100,scaler/meanObjects[1])
+		motorSpeedR = 0
+	else:
+		print "Going forward"
+		#motorControl.setLeftMotor(scaler)
+		#motorControl.setRightMotor(scaler)
+		motorSpeedL = 0
+		motorSpeedR = 20
+	print "Setting motor"
+	# motorControl.setRightMotor(motorSpeedR)
+	# motorControl.setLeftMotor(motorSpeedL)
+	motorControl.setMotor(motorSpeedL, motorSpeedR)
+	# if meanObjects[1] < 5:
+	# 	if meanObjects[0] > 0:	
+	# 		print 'Setting right motor 150'
+	# 		motorControl.setRightMotor(150)
+	# 		motorControl.setLeftMotor(0)
+	# 		print 'Set right motor'
+	# 		print "||||||||||||||||||||||||||||||||||||||||"
+	# 	else:
+	# 		print 'Setting left motor 100'
+	# 		motorControl.setRightMotor(150)
+	# 		motorControl.setLeftMotor(0)
+	# 		print 'Set left motor'
+	# 		print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
 
 
@@ -86,12 +116,6 @@ def controlLoop(r2p, loop_time):
 		i+=1
 
 def print_gps(gps, loop_time):
-	#print gps.portlist
-	gps.open_port('/dev/ttyUSB0')
-	curLatitude = 0;
-	curLongitude = 0;
-	while True:
-		curLatitude = gps.latitude
 		curLongitude = gps.longitude
 		#sudo rm -r -f /path/rint gps.time, gps.latitude, gps.longitude
 

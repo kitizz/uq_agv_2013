@@ -132,7 +132,7 @@ class GPSData(object):
         try:
             while True:
                 reading = ser.readline()
-                print reading
+                #print reading
                 self.handle_data(reading)
                     #handle_data(reading)
         except KeyboardInterrupt:
@@ -210,6 +210,6 @@ if __name__ == "__main__":
     #thread.start()
     gps = GPSData()
     print gps.portlist
-    gps.open_port()
+    gps.open_port('/dev/ttyUSB0')
     while True:
         print gps.time

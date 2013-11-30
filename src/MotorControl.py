@@ -3,11 +3,7 @@ import serial
 
 class MotorControl:
 
-<<<<<<< HEAD
-	def __init__(self, prefix, ports=[], baud=115200):
-=======
 	def __init__(self, prefix='/dev/ttyACM', ports=[], baud=9600):
->>>>>>> 4ec647cc1562bfdf4d98500d2b1d98927ea1b65f
 		'''
 		Connect the motor control at serial port defined as:
 		prefix: The port prefix, e.g. /dev/ttyUSB, /dev/ttyACM, etc.
@@ -38,24 +34,44 @@ class MotorControl:
 		# 30 = full speed backwards
 		# 90 = no speed
 		# 150 = full speed forwards
-
-		v = max( min(v,100), -100)
-		vel = int( float(v)/60 + 90 )
-		self.ser.write('L' + str(vel))
-		self.ser.flush()
-		#self.ser.close()
+		v = max( min(v,100), 0)
+		# print "v", v
+		try:
+			if not self.ser.isOpen():
+				self.ser.open()
+			speed = 50 - int((v))
+			speed = max( min(speed,60), 40)
+			self.ser.write('R' + str(speed)+'\n')
+			self.ser.flush()
+		except:
+			print "Failed to Write serial yo"
+		else:
+			#pass
+			# print "Didnt do nothing"
+			self.ser.close()
 
 	def setRightMotor(self, v):
 		''' setLeftMotor(velocity)
 		Takes a velocity valued between -100 and 100 to send to the left motor.
 		'''
-		v = max( min(v,100), -100)
-		vel = int (float(v)/60 + 90 )
-		self.ser.write('R' + str(vel))
-		self.ser.flush()
-		#self.ser.close()
+		v = max( min(v,100), 0)
+		# print "v", v
+		try:
+			if not self.ser.isOpen():
+				self.ser.open()
+			speed = 50 + int((v))
+			speed = max( min(speed,60), 40)
+			self.ser.write('L' + str(speed)+'\n')
+			self.ser.flush()
+		except:
+			print "Failed to Write serial yo"
+		else:
+			pass
+			#print "Didnt do nothing"
+			self.ser.close()
 
 	def setMotor(self, vL, vR):
 		self.setLeftMotor(vL)
+		# time.sleep(0.01)
 		self.setRightMotor(vR)
 
