@@ -69,10 +69,12 @@ void check_autonomous(){
   {
     if(pulseIn(PPMinAutonomous, HIGH) > 1500){ autonomous = 1; }
     else { autonomous = 0; }
-    if(prevMode != autonomous){
-      setMotor(50,50);
-      prevMode = autonomous;
-    }
+  }
+  if(prevMode != autonomous){
+    setMotor(50,50);
+    valueL = 50;
+    valueR = 50;
+    prevMode = autonomous;
   }
 }
 
@@ -83,8 +85,8 @@ int StatusLED = 0;
 
 void loop(){
   check_autonomous();
-  valueL = 50;
-  valueR = 50;
+  // valueL = 50;
+  // valueR = 50;
   if(autonomous){
     char inChar = 0;
     char inData[5];
