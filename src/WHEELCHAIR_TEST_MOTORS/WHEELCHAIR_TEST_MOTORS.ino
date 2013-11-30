@@ -23,7 +23,7 @@ void setup(){
 
 void setMotor(int SpeedA, int SpeedB){
   motor1.write(SpeedA);
-  motor2.write(SpeedB);
+  // motor2.write(SpeedB);
 }
 
 int i = 0;

@@ -1,13 +1,12 @@
 #define motorA 10
 #define motorB 6
-#define MINMOTORVAL 30
-#define MIDMOTORVAL 90
-#define MAXMOTORVAL 150
+#define MINMOTORVAL 930
+#define MAXMOTORVAL 1930
 #define MINMOTORINPUT 0
-#define MAXMOTORINPUT 255
-#define MINPPMVAL 1400
-#define MAXPPMVAL 1600
-#include <Servo.h>
+#define MAXMOTORINPUT 100
+#define MINPPMVAL 1350
+#define MAXPPMVAL 1650
+// #include <Servo.h>
 
 int motor_flag; 
 int autonomous = 0;
@@ -17,81 +16,75 @@ int PPMinElev = 2;
 int PPMinAutonomous = 5;
 int StatusLEDpin = 13;
 
-Servo motor1;
-Servo motor2;
 String motorcommand;
 
 int valueL=90;
 int valueR=90;
 
 void setup(){
-  motor1.attach(motorA);
-  motor2.attach(motorB);
+  pinMode(motorA, OUTPUT);
+  pinMode(motorB, OUTPUT);
   Serial.begin(9600);
+  // Serial.setTimeout(1000);
   pinMode(PPMin, INPUT); //Patita 4 como entrada / Pin 4 as input
   pinMode(PPMinAil, INPUT); //Patita 4 como entrada / Pin 4 as input
   pinMode(PPMinElev, INPUT); //Patita 4 como entrada / Pin 4 as input
   pinMode(StatusLEDpin, OUTPUT);
+
+  setMotor(50,50);
 }
 
+
+void setMotorIndividual(int motor, int Speed){
+  digitalWrite(motor, HIGH);
+  delayMicroseconds(map(Speed, 0, 100, MINMOTORVAL, MAXMOTORVAL));
+  digitalWrite(motor, LOW);
+}
 
 void setMotor(int SpeedA, int SpeedB){
-  if(motor1.attached()){
-    motor1.write(SpeedA);
-    // Serial.print("MOTOR1 Set");
-  }
-  if(motor2.attached()){
-    motor2.write(SpeedB);
-    // Serial.print("MOTOR2 Set");
-  }
+  setMotorIndividual(motorA, SpeedA);
+  setMotorIndividual(motorB, SpeedB);
 }
 
-void check_E_stop(){
+bool check_E_stop(){
   //waits ultil synchronize arrives > 4 miliseconds
   if(pulseIn(PPMin , HIGH) > 4000); //If pulse > 4 miliseconds, continues
   { 
     motor_flag = pulseIn(PPMin, HIGH);
     if(motor_flag > 1500){ // MOTORS OFF
-      Serial.println("OFF");
-      if(motor1.attached()){
-        motor1.detach();
-      }
-      if(motor2.attached()){
-        motor2.detach();
-      }
+      Serial.println("OFF");     
+      return false;
     } else {
       Serial.println("ON");
-      if(!motor1.attached()){
-        motor1.attach(motorA);
-      }
-      if(!motor2.attached()){
-        motor2.attach(motorB);
-      }
+      return true;
     } // MOTORS ON
   }
 }
 
+int prevMode = 0;
+
 void check_autonomous(){
   //waits ultil synchronize arrives > 4 miliseconds
   if(pulseIn(PPMinAutonomous , HIGH) > 4000); //If pulse > 4 miliseconds, continues
-  { 
+  {
     if(pulseIn(PPMinAutonomous, HIGH) > 1500){ autonomous = 1; }
     else { autonomous = 0; }
+    if(prevMode != autonomous){
+      setMotor(50,50);
+      prevMode = autonomous;
+    }
   }
 }
 
 byte index = 0;
 
-int* motorFromSerial(){
-  
-}
 
 int StatusLED = 0;
 
 void loop(){
-  check_E_stop();
   check_autonomous();
-  int* val;
+  valueL = 50;
+  valueR = 50;
   if(autonomous){
     char inChar = 0;
     char inData[5];
@@ -104,7 +97,6 @@ void loop(){
         // read the incoming byte:
         if (Serial.available() == 0) continue;
         inChar = Serial.read();
-        
         // ECHO BACK TO PC
         // Serial.write(inChar);
         // Serial.flush();
@@ -142,8 +134,6 @@ void loop(){
         valueR = atoi(value);
       }
 
-      valueL = map(valueL, MINMOTORINPUT, MAXMOTORINPUT, MINMOTORVAL, MAXMOTORVAL);
-      valueR = map(valueR, MINMOTORINPUT, MAXMOTORINPUT, MINMOTORVAL, MAXMOTORVAL);
     }
 
     digitalWrite(StatusLEDpin, StatusLED);
@@ -164,8 +154,10 @@ void loop(){
     { 
       m_dir = map(pulseIn(PPMinElev, HIGH), MINPPMVAL, MAXPPMVAL, MINMOTORINPUT, MAXMOTORINPUT);
     }
-    valueL = m_speed + m_dir;
-    valueR = m_speed - m_dir;
+    valueL = 50 + ((m_speed - 50) + (m_dir-50));
+    valueR = 50 + ((m_speed - 50) - (m_dir-50));
+    // valueL = m_speed;
+    // valueR = m_dir;
     if(valueL > MAXMOTORINPUT) { valueL = MAXMOTORINPUT; }
     else if (valueL < MINMOTORINPUT) { valueL = MINMOTORINPUT; }
     if(valueR > MAXMOTORINPUT) { valueR = MAXMOTORINPUT; }
@@ -174,8 +166,6 @@ void loop(){
 
     digitalWrite(StatusLEDpin, HIGH);
     Serial.println("MAN");
-    valueL = map(valueL, MINMOTORINPUT, MAXMOTORINPUT, MINMOTORVAL, MAXMOTORVAL);
-    valueR = map(valueR, MINMOTORINPUT, MAXMOTORINPUT, MINMOTORVAL, MAXMOTORVAL);
   }
 
   if (index > 0) { // If we received a command this loop
@@ -187,8 +177,12 @@ void loop(){
     Serial.println(motor_flag);
   }
   Serial.flush();
-  setMotor(valueL, valueR);
+  if(check_E_stop()){
+    setMotor(valueL, valueR);  
+  } else {
+    setMotor(50,50);
+  }
 
-  delay(250);
+  delay(150);
 
 }
