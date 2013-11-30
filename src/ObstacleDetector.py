@@ -66,6 +66,15 @@ class ObstacleDetector:
         ind = self.model.coord2ind(coord)
         return self.model.points[ind,:][:,[0,2]]
 
+    def get3DCloudFromMask(self, mask):
+        '''
+        Given a mask, return a 3D point cloud (see all 'getObstacleCloud')
+        containing points *that exist* for selected pixels in the mask.
+        '''
+        coord = np.array( np.where(mask>0) ).T
+        ind = self.model.coord2ind(coord)
+        return self.model.points[ind,:]
+
     def updateImage(self, image_msg):
         if type(image_msg) == np.ndarray:
             self.image = image_msg
