@@ -150,6 +150,10 @@ class Ros2Python:
         self.laneDetector.showImage()
         self.mask[self.detectedLanes] = 2
 
+        coord = np.array( np.where(self.mask>0) ).T
+        ind = ObstacleDetector.model.coord2ind(coord)
+        self.obstacleCloud = ObstacleDetector.model.points[ind,:]
+
         if self.showDetected:
             #print 'Showing Detected'
             self.objectDetector.showDetected(self.mask)
