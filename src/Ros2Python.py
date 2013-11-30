@@ -122,7 +122,7 @@ class Ros2Python:
 
         self.mask = self.objectDetector.getPlaneObjectMask()
         self.grassDetector.updateMask(self.mask==1)
-        grassMask = np.logical_and(self.grassDetector.findGrass(), self.mask!=2)
+        grassMask = np.logical_and(self.grassDetector.findGrass(),self.mask!=2)
         self.mask[grassMask] = 1
 
         model = self.objectDetector.model

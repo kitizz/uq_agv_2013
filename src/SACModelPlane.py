@@ -29,9 +29,14 @@ class SACModelPlane:
         return (self._ind2coord[0][ind], self._ind2coord[1][ind])
 
     def coord2ind(self, coord):
+        '''
+        Given an Nx2 array containing coordinate points in an image, return the
+        indices of the corresponding points in the 3D point cloud. Coordinates
+        to pixels that have no depth data will simply be ignored.
+        '''
         ind = self._coord2ind[coord[:,0], coord[:,1]]
         ind = ind[ind!=-1]
-        return ind
+        return ind.astype(int)
 
     def getRandomSamples(self, n, subset=None):
         if subset == None or len(subset) < n: subset = self.indices

@@ -59,18 +59,28 @@ class ObstacleDetector:
         '''
         return self.obstacleCloud
 
+    def get2DCloudFromMask(self, mask):
+        '''
+        Given a mask, return a 2D point cloud (see all 'getObstacleCloud')
+        containing points *that exist* for selected pixels in the mask.
+        '''
+        coord = np.array( np.where(mask>0) ).T
+        ind = self.model.coord2ind(coord)
+        return self.model.points[ind,:][:,[0,2]]
+
     def updateImage(self, image_msg):
         if type(image_msg) == np.ndarray:
             self.image = image_msg
         else:
             self.image = image_msg.image
 
-    def updatePoints(self, point_msg):
+    def updatePoints(self, point_msg, updateAll=True):
         if type(point_msg) == np.ndarray:
             self.points = point_msg
         else:
             self.points = point_msg.points
-        self.update()
+
+        if updateAll: self.update()
 
     @staticmethod
     def goodCoeff(coeff, normal, angle):
@@ -140,6 +150,9 @@ class ObstacleDetector:
         #self.obstacleCloud = projected[...,[0,2]]
         #print 'Getting Obstacle Cloud', model.points.shape, type(model.points)
         #print objectInd.shape
+
+        # We retrieve the 3D points for the given object indices. And we're
+        # interested in the in-plane locations of them. So X+Z in camera coords
         self.obstacleCloud = self.model.points[objectInd,:][:,[0,2]]
         # self.showMap(obstacleCloud)
         
@@ -370,7 +383,15 @@ def main():
     # obDetect.updateImage(lastImage)
     # obDetect.updatePoints(lastPoints)
 
+def main2():
+    obDetect = ObstacleDetector((2,2))
+    points = np.array([ [[0,0,3],[1,3,4]],
+                        [[1,2,2],[np.nan,np.nan,np.nan]] ])
+    
+    obDetect.updatePoints(points)
+    mask = np.array([[1,1],[0,1]], dtype=bool)
+    print obDetect.get2DCloudFromMask( mask )
 
 if __name__ == '__main__':
-    main()
+    main2()
 
