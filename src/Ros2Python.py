@@ -119,6 +119,7 @@ class Ros2Python:
             elements in the mask are set to 1 if that pixel is part of the
             plane/ground, 2 if that pixel is an object, and 0 otherwise.
         '''
+
         self.mask = self.objectDetector.getPlaneObjectMask()
         self.grassDetector.updateMask(self.mask==1)
         grassMask = np.logical_and(self.grassDetector.findGrass(), self.mask!=2)
@@ -145,7 +146,9 @@ class Ros2Python:
 
         # Do the lane detect also
         detectedLanes = self.laneDetector.findLines()
-        self.detectedLanes = np.logical_and(detectedLanes, self.mask==1)
+        self.detectedLanes = np.logical_and(detectedLanes, self.mask!=2)
+        self.laneDetector.showImage()
+        self.mask[self.detectedLanes] = 2
 
         if self.showDetected:
             #print 'Showing Detected'

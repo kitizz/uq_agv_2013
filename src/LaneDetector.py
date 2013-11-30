@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import cv2
 import math
 import numpy as np
@@ -45,7 +47,7 @@ class LaneDetector:
 		for i in range(0,len(hough[0])):
 			rho= hough[0][i][0]
 			theta= hough[0][i][1]
-			if theta < math.pi/4 or theta > 3.*math.pi/4:
+			if theta < math.pi/3.5 or theta > 3.*math.pi/3.5:
 				if nLines > 10: break
 				nLines += 1
 				#point of intersection of the line with first row
@@ -57,21 +59,25 @@ class LaneDetector:
 
 		#Apply a logical 'and' to both images 
 		self.detectedLines = np.logical_and(self.houghPImg, self.houghImg)
-
+		# if self.detectedLines:
+		# 	self.detectedLines = cv2.morphologyEx(self.detectedLines, cv2.MORPH_OPEN, np.array(0),1)
 		return self.detectedLines
 
 
 	def showImage(self):
-		cv2.imshow("Contours", self.contours)
-		cv2.imshow("Hough", self.houghImg)
-		cv2.imshow("HoughP", self.houghPImg)
+		#cv2.imshow("Contours", self.contours)
+		#cv2.imshow("Hough", self.houghImg)
+		#cv2.imshow("HoughP", self.houghPImg)
 		cv2.imshow("Masked", self.detectedLines.astype(float)*255)
 		#cv2.waitKey(0)
 
 
-if __name__ == "__main__":
+def main():
 	image = cv2.imread("track.jpg")
 	TEG = LaneDetector(image.shape[0:2])
 	TEG.updateImage(image)
 	TEG.findLines()
-	# TEG.showImage()
+
+if __name__ == '__main__':
+	main()
+

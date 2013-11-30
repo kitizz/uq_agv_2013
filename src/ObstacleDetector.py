@@ -6,6 +6,8 @@ import numpy as np
 import SACModelPlane
 import RRansac
 
+import LaneDetector
+
 colors = np.array([[255, 0, 0],
     [0,255,0],
     [0,0,255],
@@ -139,7 +141,6 @@ class ObstacleDetector:
         #print 'Getting Obstacle Cloud', model.points.shape, type(model.points)
         #print objectInd.shape
         self.obstacleCloud = self.model.points[objectInd,:][:,[0,2]]
-        
         # self.showMap(obstacleCloud)
         
         # cv2.waitKey(10)
@@ -164,6 +165,7 @@ class ObstacleDetector:
         drawPlane = planeIndices != None and len(planeIndices) > 0
         drawObstacles = obstacleIndices == None or len(obstacleIndices) == 0
         if not drawPlane and not drawObstacles: return
+        
 
         # Convert the image to colour so we can draw on it
         imageVis = cv2.cvtColor(self.image, cv2.COLOR_GRAY2RGB)
