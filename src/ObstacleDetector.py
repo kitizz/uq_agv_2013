@@ -6,6 +6,8 @@ import numpy as np
 import SACModelPlane
 import RRansac
 
+import LaneDetector
+
 colors = np.array([[255, 0, 0],
     [0,255,0],
     [0,0,255],
@@ -57,18 +59,37 @@ class ObstacleDetector:
         '''
         return self.obstacleCloud
 
+    def get2DCloudFromMask(self, mask):
+        '''
+        Given a mask, return a 2D point cloud (see all 'getObstacleCloud')
+        containing points *that exist* for selected pixels in the mask.
+        '''
+        coord = np.array( np.where(mask>0) ).T
+        ind = self.model.coord2ind(coord)
+        return self.model.points[ind,:][:,[0,2]]
+
+    def get3DCloudFromMask(self, mask):
+        '''
+        Given a mask, return a 3D point cloud (see all 'getObstacleCloud')
+        containing points *that exist* for selected pixels in the mask.
+        '''
+        coord = np.array( np.where(mask>0) ).T
+        ind = self.model.coord2ind(coord)
+        return self.model.points[ind,:]
+
     def updateImage(self, image_msg):
         if type(image_msg) == np.ndarray:
             self.image = image_msg
         else:
             self.image = image_msg.image
 
-    def updatePoints(self, point_msg):
+    def updatePoints(self, point_msg, updateAll=True):
         if type(point_msg) == np.ndarray:
             self.points = point_msg
         else:
             self.points = point_msg.points
-        self.update()
+
+        if updateAll: self.update()
 
     @staticmethod
     def goodCoeff(coeff, normal, angle):
@@ -138,8 +159,10 @@ class ObstacleDetector:
         #self.obstacleCloud = projected[...,[0,2]]
         #print 'Getting Obstacle Cloud', model.points.shape, type(model.points)
         #print objectInd.shape
+
+        # We retrieve the 3D points for the given object indices. And we're
+        # interested in the in-plane locations of them. So X+Z in camera coords
         self.obstacleCloud = self.model.points[objectInd,:][:,[0,2]]
-        
         # self.showMap(obstacleCloud)
         
         # cv2.waitKey(10)
@@ -164,6 +187,7 @@ class ObstacleDetector:
         drawPlane = planeIndices != None and len(planeIndices) > 0
         drawObstacles = obstacleIndices == None or len(obstacleIndices) == 0
         if not drawPlane and not drawObstacles: return
+        
 
         # Convert the image to colour so we can draw on it
         imageVis = cv2.cvtColor(self.image, cv2.COLOR_GRAY2RGB)
@@ -368,7 +392,15 @@ def main():
     # obDetect.updateImage(lastImage)
     # obDetect.updatePoints(lastPoints)
 
+def main2():
+    obDetect = ObstacleDetector((2,2))
+    points = np.array([ [[0,0,3],[1,3,4]],
+                        [[1,2,2],[np.nan,np.nan,np.nan]] ])
+    
+    obDetect.updatePoints(points)
+    mask = np.array([[1,1],[0,1]], dtype=bool)
+    print obDetect.get2DCloudFromMask( mask )
 
 if __name__ == '__main__':
-    main()
+    main2()
 
