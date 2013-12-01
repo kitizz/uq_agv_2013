@@ -69,6 +69,7 @@ class LaneDetector:
 		#cv2.waitKey(0)
 
 
+
 if __name__ == "__main__":
 	image = cv2.imread("track.jpg")
 	TEG = LaneDetector(image.shape[0:2])
