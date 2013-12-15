@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import threading
 import serial
 import string
@@ -46,67 +48,83 @@ class GPSData(object):
         #thread.daemon = True
         #thread.start()
         
-   
-    def open_port(self, serialport = 'COM0'):
+    def open_port(self, prefix='/dev/ttyACM', ports=[], baud=19200):
         """
         Opens a port either by automatically selecting from avaliable ports or by
         taking a manual COM selection
        
         turns serial_open based on success
         """
-        #If manual COM port
-        if(serialport != 'COM0'):
+
+        if not ports:
+            ports = range(3)
+
+        success = False
+        for port in ports:
+            dev = prefix + str(port)
             try:
-                self.serial = serial.Serial(baudrate = 19200, port = serialport)
+                self.serial = serial.Serial(dev, baud, timeout=2)
                 self.serial_open = True
-            except SerialException:
-                self.serial_open = False
-                print "Failed to open MANUAL gps serial port"
             except:
-                print "Some other shit failed"
-        #If Automatic
-        else:
-            self.list_serial_ports()
-            if not len(self.portlist):
-                print "No Ports Detected"
-            elif len(self.portlist) == 1:
-                self.serial = serial.Serial(baudrate = 19200, port = self.portlist[0])
-                self.serial_open = True
-                print "Opened port on " + self.portlist[0]
-            elif len(self.portlist) > 1:
-                print "Callum hasn't added the code for automatic port swtiching"
+                print "Failed to open:", dev, "Attempting next port..."
                 self.serial_open = False
+            else:
+                print "Succesfully opened:", dev
+                break
+
+        # #If manual COM port
+        # if(serialport == 'COM0'):
+        #     try:
+        #         self.serial = serial.Serial(baudrate = 19200, port = serialport)
+        #         self.serial_open = True
+        #     except SerialException:
+        #         self.serial_open = False
+        #         print "Failed to open MANUAL gps serial port"
+        #     except:
+        #         print "Some other shit failed"
+        # #If Automatic
+        # else:
+        #     self.list_serial_ports()
+        #     if not len(self.portlist):
+        #         print "No Ports Detected"
+        #     elif len(self.portlist) == 1:
+        #         self.serial = serial.Serial(baudrate = 19200, port = self.portlist[0])
+        #         self.serial_open = True
+        #         print "Opened port on " + self.portlist[0]
+        #     elif len(self.portlist) > 1:
+        #         print "Callum hasn't added the code for automatic port swtiching"
+        #         self.serial_open = False
+
         if self.serial_open:
-            print "threading"
+            print "GPS COM port opened"
             thread = threading.Thread(target=self.read_from_port, args=(self.serial,))
             #thread.daemon = True
             thread.start()
-            print threading.active_count()
+            #print threading.active_count()
         else:
-            print "serial port not opened"
+            print "GPS COM port connect failed"
         
         
     def handle_data(self, data):
         """
         Determines if a VTG or GGA String and loads into memory
         """
-        print data[0]
+        #print data[0]
         if data[0] == '$':
             if data.find('GPVTG') != -1:
-                print data.find("GPVTG")
-                print "it be VTG"
+                #print data.find("GPVTG")
+                #print "it be VTG"
                 data2 = [i.strip() for i in data.split(',')]
-                print data2
                 self.lock.acquire()
                 self.headingM = data2[1]
                 self.headingT = data2[3]
                 self.speedkhm = data2[5]
                 self.speedknots = data2[7]
-                print "banans"
+                #print "banans"
                 self.lock.release()
                 
             elif data.find("GPGGA") != -1:
-                print "it be GGA" 
+                #print "it be GGA" 
                 data2 =[i.strip() for i in data.split(',')]
                 self.lock.acquire()
                 self.time = data2[1]
@@ -123,7 +141,7 @@ class GPSData(object):
                 self.DGPS_reference_ID = data2[14]
                 self.lock.release()
             else:
-                print "fucking broked"
+                print "GPS Error"
             
     def read_from_port(self, ser):
         """
@@ -209,7 +227,6 @@ if __name__ == "__main__":
     #thread = threading.Thread(target=read_from_port, args=(serial_port,))
     #thread.start()
     gps = GPSData()
-    print gps.portlist
-    gps.open_port('/dev/ttyUSB0')
-    while True:
-        print gps.time
+    gps.open_port('/dev/ttyUSB1')
+    #for i in range(0,1000):
+    #    print gps.time, gps.latitude, gps.longitude

@@ -150,9 +150,7 @@ class Ros2Python:
         self.laneDetector.showImage()
         self.mask[self.detectedLanes] = 2
 
-        coord = np.array( np.where(self.mask>0) ).T
-        ind = ObstacleDetector.model.coord2ind(coord)
-        self.obstacleCloud = ObstacleDetector.model.points[ind,:]
+        self.maskall = self.mask
 
         if self.showDetected:
             #print 'Showing Detected'
@@ -172,6 +170,8 @@ class Ros2Python:
 
 
         # cv2.waitKey(15)
+    def getMaskAll(self):
+        return self.maskall
 
     def cbImage(self, img_msg):
         image = np.asarray(self.bridge.imgmsg_to_cv(img_msg))

@@ -24,7 +24,7 @@ int valueR=90;
 void setup(){
   pinMode(motorA, OUTPUT);
   pinMode(motorB, OUTPUT);
-  Serial.begin(9600);
+  Serial.begin(115200);
   // Serial.setTimeout(1000);
   pinMode(PPMin, INPUT); //Patita 4 como entrada / Pin 4 as input
   pinMode(PPMinAil, INPUT); //Patita 4 como entrada / Pin 4 as input
@@ -87,6 +87,8 @@ void loop(){
   check_autonomous();
   // valueL = 50;
   // valueR = 50;
+  //autonomous = 1;
+  //autonomous = 1;
   if(autonomous){
     char inChar = 0;
     char inData[5];

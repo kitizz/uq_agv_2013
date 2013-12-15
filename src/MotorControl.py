@@ -44,11 +44,10 @@ class MotorControl:
 			self.ser.write('R' + str(speed)+'\n')
 			self.ser.flush()
 		except:
-			print "Failed to Write serial yo"
+			print "Failed to write to serial"
 		else:
-			#pass
-			# print "Didnt do nothing"
-			self.ser.close()
+			print "Serial already open"
+			#self.ser.close()
 
 	def setRightMotor(self, v):
 		''' setLeftMotor(velocity)
@@ -64,14 +63,21 @@ class MotorControl:
 			self.ser.write('L' + str(speed)+'\n')
 			self.ser.flush()
 		except:
-			print "Failed to Write serial yo"
+			print "Failed to write to serial"
 		else:
-			pass
-			#print "Didnt do nothing"
-			self.ser.close()
+			print "Serial already open"
+			#self.ser.close()
 
 	def setMotor(self, vL, vR):
 		self.setLeftMotor(vL)
 		# time.sleep(0.01)
 		self.setRightMotor(vR)
+
+
+	def setMotorSpeeds(self, vL, vR):
+		self.motorSpeedL = vL
+		self.motorSpeedR = vR
+
+	def getMotorSpeeds(self):
+		return (self.motorSpeedL,self.motorSpeedR)
 
