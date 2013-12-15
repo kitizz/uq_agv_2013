@@ -71,7 +71,6 @@ class LaneDetector:
 		cv2.imshow("Masked", self.detectedLines.astype(float)*255)
 		#cv2.waitKey(0)
 
-
 def main():
 	image = cv2.imread("track.jpg")
 	TEG = LaneDetector(image.shape[0:2])

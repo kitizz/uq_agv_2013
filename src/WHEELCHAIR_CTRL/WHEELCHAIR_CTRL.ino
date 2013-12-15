@@ -96,7 +96,10 @@ void loop(){
     //Fill buffer up:
     index = 0;
     if (Serial.available() > 0) {
+      unsigned long prevTime = millis();
+      long interval = 500; // Interval for serial check in ms
       while (index<4) {
+        unsigned long curTime = millis();
         //Buffer
         // read the incoming byte:
         if (Serial.available() == 0) continue;
@@ -110,6 +113,8 @@ void loop(){
         inData[index] = inChar;
         index++;
         inData[index] = '\0';
+        // The reading of the serial is taking too long (error), ignore and break
+        if((curTime - prevTime) > interval){ break; }
       }
       Serial.println("...received");
 
