@@ -11,7 +11,9 @@
 #include "LaneDetector.h"
 #include "GPS.h"
 //OpenCV files
-//#include "opencv2/core/core.hpp"
+// #include "/opt/ros/fuerte/include/opencv2/core/core.hpp"
+// #include <opencv2/core/core.hpp>
+// #include "opencv2/core/core.hpp"
 // #include "opencv2/flann/miniflann.hpp"
 // #include "opencv2/imgproc/imgproc.hpp"
 // #include "opencv2/photo/photo.hpp"
@@ -27,6 +29,7 @@
 // #include "opencv2/imgproc/imgproc_c.h"
 //Core files
 #include <iostream>
+#include <stdio.h>
 
 int main()
 {
